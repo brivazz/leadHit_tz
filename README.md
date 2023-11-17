@@ -1,7 +1,5 @@
-![CI](https://github.com/brivazz/leadHit_tz/actions/workflows/tests.yml/badge.svg)
-![CI](https://github.com/brivazz/leadHit_tz/actions/workflows/code-checker.yml/badge.svg)
-
-![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/brivazz/leadHit_tz)![GitHub language count](https://img.shields.io/github/languages/count/brivazz/leadHit_tz)![GitHub top language](https://img.shields.io/github/languages/top/brivazz/leadHit_tz)![Github Repository Size](https://img.shields.io/github/repo-size/brivazz/leadHit_tz)
+![CI](https://github.com/brivazz/leadHit_tz/actions/workflows/tests.yml/badge.svg)![CI](https://github.com/brivazz/leadHit_tz/actions/workflows/code-checker.yml/badge.svg)![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/brivazz/leadHit_tz)
+![GitHub language count](https://img.shields.io/github/languages/count/brivazz/leadHit_tz)![GitHub top language](https://img.shields.io/github/languages/top/brivazz/leadHit_tz)![Github Repository Size](https://img.shields.io/github/repo-size/brivazz/leadHit_tz)
 
 # Web-приложение для определения заполненных форм
 
