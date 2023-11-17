@@ -34,7 +34,6 @@ class CompletedForm:
     async def max_match_document(self, matched_templates: list[dict[Any, Any]], key_list: list[str]) -> str:
         """Выбирает наиболее подходящее имя документа."""
         count_dict: DefaultDict[str, int] = defaultdict(int)
-        max_match_document_fields = {}
 
         for template in matched_templates:
             template_fields = template['fields']
@@ -43,10 +42,7 @@ class CompletedForm:
                 if k == v and k in key_list:
                     count_dict[template['name']] += 1
 
-        for name, count in count_dict.items():
-            max_match_document_fields[name] = count
-
-        return max(max_match_document_fields, key=lambda k: max_match_document_fields[k])
+        return max(count_dict, key=lambda k: count_dict[k])
 
     async def fields_type(self, fields: FormField) -> dict[str, str]:
         """Если подходящей формы не нашлось возвращаются поля на основе правил валидации."""
