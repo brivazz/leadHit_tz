@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Test
-        run: docker-compose -f docker-compose -f docker-compose-tests.yml up --build tests
+        run: docker-compose -f docker-compose-tests.yml up --build tests
 
       - name: Fail if pytest errors found
         run: |
