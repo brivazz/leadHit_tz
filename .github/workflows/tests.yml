@@ -1,0 +1,32 @@
+name: tests
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test
+        run: docker-compose -f docker-compose -f docker-compose-tests.yml up --build tests
+
+      - name: Fail if pytest errors found
+        run: |
+          CONTAINER_ID=$(docker ps -aqf "name=tests")
+          if [ -n "$CONTAINER_ID" ]; then
+            EXIT_CODE=$(docker wait $CONTAINER_ID)
+            if [ "$EXIT_CODE" == "1" ]; then
+              echo "Test errors found. Exiting with error."
+              exit 1
+            fi
+          fi
+
+      - name: Stop Docker compose
+        id: stop_docker_compose
+        run: docker-compose -f docker-compose-tests.yml down -v
+        continue-on-error: true
