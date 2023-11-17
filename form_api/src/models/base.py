@@ -20,7 +20,7 @@ def orjson_dumps(value: dict[typing.Any, str], *, default: typing.Callable[[int,
     return orjson.dumps(value, default=default).decode()
 
 
-class BaseOrjsonModel(BaseModel):
+class BaseOrjsonModel(BaseModel):  # type: ignore
     """Базовая модель."""
 
     class Config:
