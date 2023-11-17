@@ -1,3 +1,6 @@
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/brivazz/leadHit_tz/code-checker.yml)![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/brivazz/leadHit_tz)![GitHub language count](https://img.shields.io/github/languages/count/brivazz/leadHit_tz)![GitHub top language](https://img.shields.io/github/languages/top/brivazz/leadHit_tz)![Github Repository Size](https://img.shields.io/github/repo-size/brivazz/leadHit_tz)
+
+
 # Web-приложение для определения заполненных форм.
 
 ### Задание:
@@ -79,7 +82,7 @@
 
 # Запуск
 
-1. Команда `make start` запустит docker-compose и сервис будет доступен для запросов по адресу: `http://127.0.0.1:80/api/v1/get_form`
+1. Команда `make start` запустит docker-compose и сервис будет доступен для запросов по адресу: <http://127.0.0.1:80/api/v1/get_form>
    - желательно использовать для запросов программу [Postman](https://www.postman.com/) который умеет отправлять POST запросы, необходимые для правильной работы сервиса.
 
 # Остановка
