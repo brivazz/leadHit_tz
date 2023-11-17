@@ -1,0 +1,66 @@
+version: '3.8'
+
+networks:
+  API:
+    driver: bridge
+
+services:
+
+  api:
+    build: form_api/.
+    container_name: api
+    hostname: api
+    restart: unless-stopped
+    networks:
+      - API
+    ports:
+      - ${API_PORT}:${API_PORT}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    env_file:
+      - .env
+
+  mongodb:
+    image: mongo:${MONGO_VERSION}
+    hostname: mongodb
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok'
+      interval: 2s
+      timeout: 5s
+      retries: 120
+    networks:
+      - API
+
+  mongo-express:
+    image: mongo-express:${MONGO_EXPRESS_VERSION}
+    container_name: mongo-express
+    restart: unless-stopped
+    ports:
+      - ${MONGO_EXPRESS_PORT}:${MONGO_EXPRESS_PORT}
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: ${MONGO_PORT}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - API
+
+  nginx:
+    image: nginx:${NGINX_VERSION}
+    container_name: nginx
+    networks:
+      - API
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf:ro
+    depends_on:
+      - api
+    ports:
+      - ${NGINX_PORT}:80

@@ -1,0 +1,12 @@
+---
+
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  - '.yamllint'
+
+rules:
+  truthy: disable
+  line-length: disable
+    # max: 119
+    # level: warning
