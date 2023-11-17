@@ -20,7 +20,7 @@ jobs:
         run: |
           touch .env
           echo "${{ vars.ENV_FILE }}" > .env
-          docker-compose -f docker-compose-tests.yml up --build -d test_app mongo_test
+          docker-compose -f docker-compose-tests.yml up --build -d test_app mongodb
         continue-on-error: true
 
       - name: Run Pytest
