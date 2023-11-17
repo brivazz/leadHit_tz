@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Pytest
         id: run_pytest
-        run: docker-compose -f ./ugc_service/tests/functional/docker-compose.yml up --build tests
+        run: docker-compose -f docker-compose-tests.yml up --build tests
         continue-on-error: true
 
       - name: Fail if pytest errors found
