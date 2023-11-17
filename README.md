@@ -1,7 +1,7 @@
 ![CI](https://github.com/brivazz/leadHit_tz/actions/workflows/tests.yml/badge.svg)
 ![CI](https://github.com/brivazz/leadHit_tz/actions/workflows/code-checker.yml/badge.svg)
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/brivazz/leadHit_tz/code-checker.yml)![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/brivazz/leadHit_tz)![GitHub language count](https://img.shields.io/github/languages/count/brivazz/leadHit_tz)![GitHub top language](https://img.shields.io/github/languages/top/brivazz/leadHit_tz)![Github Repository Size](https://img.shields.io/github/repo-size/brivazz/leadHit_tz)
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/brivazz/leadHit_tz)![GitHub language count](https://img.shields.io/github/languages/count/brivazz/leadHit_tz)![GitHub top language](https://img.shields.io/github/languages/top/brivazz/leadHit_tz)![Github Repository Size](https://img.shields.io/github/repo-size/brivazz/leadHit_tz)
 
 # Web-приложение для определения заполненных форм
 
@@ -91,9 +91,9 @@
 
 2. В корневой директории проекта создайте файл `.env` и скопируйте в него содержимое файла `.env.example` или переименуйте последний в .env
 
-3. Находясь в корневой директории проекта в терминале введите команду `python3 -m venv venv`, тем самым будет создано виртуальное окружение для установки и изоляции необходимых для проекта зависимостей
+3. [Опционально] Находясь в корневой директории проекта в терминале введите команду `python3 -m venv venv`, тем самым будет создано виртуальное окружение для установки и изоляции необходимых для проекта зависимостей
 
-4. Активируйте созданное на предыдущем этапе вируальное окружение командой `source venv/bin/activate`
+4. [Опционально] Активируйте созданное на предыдущем этапе вируальное окружение командой `source venv/bin/activate`
 
 5. [Опционально] команда `make env` установит необходимые зависимости для профилирования кода, указанные в файле `requirements.txt`
 
