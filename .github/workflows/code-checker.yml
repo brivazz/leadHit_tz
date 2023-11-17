@@ -1,6 +1,6 @@
 ---
 
-  name: Get completed forms
+  name: code style
 
   on:
     push:

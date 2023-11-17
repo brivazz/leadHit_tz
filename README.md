@@ -1,3 +1,5 @@
+![CI](https://github.com/brivazz/leadHit_tz/actions/workflows/code-checker.yml/badge.svg)
+
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/brivazz/leadHit_tz/code-checker.yml)![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/brivazz/leadHit_tz)![GitHub language count](https://img.shields.io/github/languages/count/brivazz/leadHit_tz)![GitHub top language](https://img.shields.io/github/languages/top/brivazz/leadHit_tz)![Github Repository Size](https://img.shields.io/github/repo-size/brivazz/leadHit_tz)
 
 # Web-приложение для определения заполненных форм
