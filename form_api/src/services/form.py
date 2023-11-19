@@ -10,7 +10,7 @@ from fastapi import Depends
 from models.form_templates import FormField
 
 
-class CompletedForm:
+class FormService:
     """Сервис для поиска шаблонов форм."""
 
     def __init__(self, db: AbstractDB) -> None:
@@ -50,8 +50,8 @@ class CompletedForm:
 
 
 @lru_cache
-def get_completed_form_service(
+def get_form_service(
     db: AbstractDB = Depends(get_db),
-) -> CompletedForm:
+) -> FormService:
     """DI получения сервиса для FastAPI."""
-    return CompletedForm(db)
+    return FormService(db)

@@ -4,7 +4,7 @@ import contextlib
 from collections.abc import AsyncIterator
 
 import fastapi
-from api.v1 import form_filling
+from api.v1 import form_search
 from core.config import settings
 from db.mongo import mongo_storage
 
@@ -31,4 +31,4 @@ def init_app() -> fastapi.FastAPI:
 
 app = init_app()
 
-app.include_router(form_filling.filling_router, prefix='/api/v1', tags=['get_form'])
+app.include_router(form_search.form_router, prefix='/api/v1', tags=['get_form'])

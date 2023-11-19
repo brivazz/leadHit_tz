@@ -3,12 +3,12 @@
 from api.v1.schemas.response_models import ResponseForm
 from fastapi import APIRouter, Body, Depends, HTTPException, status
 from models.form_templates import FormField, TemplateError
-from services.completed_form import CompletedForm, get_completed_form_service
+from services.form import FormService, get_form_service
 
-filling_router = APIRouter()
+form_router = APIRouter()
 
 
-@filling_router.post(
+@form_router.post(
     '/get_form',
     summary='Получить форму',
     description='Запрашивает форму подходящую по переданным полям',
@@ -16,7 +16,7 @@ filling_router = APIRouter()
 )
 async def get_form(
     form_data: FormField = Body(),
-    service: CompletedForm = Depends(get_completed_form_service),
+    service: FormService = Depends(get_form_service),
 ) -> ResponseForm | dict[str, str]:
     """Получить форму."""
     try:
