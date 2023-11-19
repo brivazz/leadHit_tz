@@ -11,11 +11,11 @@
 Пример шаблона формы:
 
 ```json
-        {
-                "name": "Form template name",
-                "field_name_1": "email",
-                "field_name_2: "phone"
-        }
+    {
+        "name": "Form template name",
+        "field_name_1": "email",
+        "field_name_2": "phone"
+    }
 ```
 
 Всего должно поддерживаться четыре типа данных полей:
@@ -47,11 +47,11 @@
 
 Если подходящей формы не нашлось, вернуть ответ в следующем формате:
 
-```json
-        {
-                f_name1: FIELD_TYPE,
-                f_name2: FIELD_TYPE
-        }
+```js
+  {
+    f_name1: FIELD_TYPE,
+    f_name2: FIELD_TYPE
+  }
 ```
 
 - где FIELD_TYPE это тип поля, выбранный на основе правил валидации, проверка
