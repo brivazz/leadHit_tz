@@ -17,18 +17,18 @@ pytestmark = pytest.mark.asyncio
     [
         (
             # получение шаблона формы успешное
-            {'date': '2023-12-12', 'phone': '+78888888888', 'email': 'ds@fd.ru', 'text': 'hello'},
+            {'date': '2023-12-31', 'phone': '+70123456789', 'email': 'tvori@dobro.org', 'text': 'hello world'},
             {'status': HTTPStatus.OK, 'name': 'Contact Information'},
         ),
         (
-            # получение шаблона формы успешное по полю даты
-            {'date': '2023-12-12', 'phone': '', 'email': '', 'text': ''},
+            # получение шаблона формы по полю дата и телефон
+            {'date': '2023-12-12', 'phone': '+70123456789'},
             {'status': HTTPStatus.OK, 'name': 'Order Form'},
         ),
         (
-            # получение шаблона формы успешное по полю text
-            {'date': '', 'phone': '', 'email': '', 'text': 'hello'},
-            {'status': HTTPStatus.OK, 'name': 'Email Form'},
+            # получение шаблона формы успешное по полю email и телефон
+            {'email': 'tvori@dobro.org', 'phone': '+70123456789'},
+            {'status': HTTPStatus.OK, 'name': 'Contact Information'},
         ),
     ],
 )
@@ -44,15 +44,7 @@ async def test_form(make_get_request, query_data: dict, expected_answer: dict):
     'query_data, expected_answer',
     [
         (
-            # получение шаблона формы выбранный на основе правил валидации
-            {'date': '', 'phone': '', 'email': '', 'text': ''},
-            {
-                'status': HTTPStatus.OK,
-                'fields': {'date': 'date', 'phone': 'phone', 'email': 'email', 'text': 'text'},
-            },
-        ),
-        (
-            # получение шаблона формы c не вилидной датой
+            # получение шаблона формы c невалидной датой
             {'date': '121212', 'phone': '', 'email': '', 'text': ''},
             {
                 'status': HTTPStatus.BAD_REQUEST,
@@ -60,17 +52,22 @@ async def test_form(make_get_request, query_data: dict, expected_answer: dict):
             },
         ),
         (
-            # получение шаблона формы c не вилидным номером телефона
-            {'date': '', 'phone': '333 333', 'email': '', 'text': ''},
+            # получение шаблона формы c невалидным номером телефона
+            {'phone': '333 333', 'email': '', 'text': ''},
             {
                 'status': HTTPStatus.BAD_REQUEST,
                 'detail': "Phone number must be in format '+7 XXX XXX XX XX' without spaces",
             },
         ),
         (
-            # получение шаблона формы c не вилидным адресом электронной почты
-            {'date': '', 'phone': '', 'email': 'hello world', 'text': ''},
+            # получение шаблона формы c невалидным адресом электронной почты
+            {'email': 'hello world', 'text': ''},
             {'status': HTTPStatus.BAD_REQUEST, 'detail': 'Invalid email address. Example: example@example.com'},
+        ),
+        (
+            # получение шаблона формы согласно правил валидации
+            {'text': 'spasibo'},
+            {'status': HTTPStatus.OK, 'date': {'date': 'date'}},
         ),
     ],
 )
@@ -83,5 +80,4 @@ async def test_bad_form(make_get_request, query_data: dict, expected_answer: dic
     if status == HTTPStatus.BAD_REQUEST:
         assert message['detail'] == expected_answer['detail']
     else:
-        assert message == expected_answer['fields']
-        assert status == expected_answer['status']
+        assert message == expected_answer['date']

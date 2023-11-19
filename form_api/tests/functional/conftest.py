@@ -5,12 +5,7 @@ import sys
 import aiohttp
 import pytest
 import pytest_asyncio
-from loguru import logger
 from motor.motor_asyncio import AsyncIOMotorClient
-
-# from pymongo.collection import Collection
-# from pymongo.database import Database
-
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -32,7 +27,6 @@ def event_loop():
 @pytest.fixture(name='mongo_client', scope='session')
 async def mongo_client():
     client = AsyncIOMotorClient(test_settings.mongo_uri)
-    logger.info('Mongo клиент создан')
     yield client
     await client.close()
 

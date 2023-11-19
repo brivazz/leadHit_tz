@@ -15,7 +15,7 @@ pytestmark = pytest.mark.asyncio
 
 @pytest.mark.parametrize('expected_answer', [{'status': http.HTTPStatus.OK}])
 async def test_hello_world(make_get_request, expected_answer: dict):
-    url = f'{test_settings.service_url}/api/v1/openapi.json'
+    url = f'{test_settings.service_url}/api/openapi.json'
     logger.info(url)
     _, status = await make_get_request(url)
     logger.info(f'Response status: {status}')

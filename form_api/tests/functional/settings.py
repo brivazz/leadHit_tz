@@ -1,4 +1,4 @@
-"""Модуль конфигурации тестов для сервиса event_api."""
+"""Модуль конфигурации тестов для сервиса form_api."""
 
 from pydantic import Field
 from pydantic_settings import BaseSettings

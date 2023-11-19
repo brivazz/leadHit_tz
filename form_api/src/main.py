@@ -1,4 +1,4 @@
-"""API управления уведомлениями."""
+"""API получения форм."""
 
 import contextlib
 from collections.abc import AsyncIterator
@@ -21,8 +21,8 @@ def init_app() -> fastapi.FastAPI:
     """Инициализирует экземпляр FastAPI."""
     return fastapi.FastAPI(
         title=settings.project_name,
-        docs_url='/api/v1/openapi',
-        openapi_url='/api/v1/openapi.json',
+        docs_url='/api/openapi',
+        openapi_url='/api/openapi.json',
         default_response_class=fastapi.responses.ORJSONResponse,
         debug=settings.debug,
         lifespan=lifespan,
