@@ -90,7 +90,8 @@
 1. [Nginx](https://nginx.org/ru/) - веб-сервер
 2. [MongoDB](https://www.mongodb.com/) - документоориентированная БД
 3. [FastAPI](https://fastapi.tiangolo.com/) - веб-фреймворк для создания веб-приложений
-4. [GitHub Actions](https://docs.github.com/ru/actions) - для реализации CI
+4. [Pytest](https://docs.pytest.org/en/7.4.x/) - фреймворк для тестирования
+5. [GitHub Actions](https://docs.github.com/ru/actions) - для реализации CI
 
 Сервис запускается с помощью Docker контейнеров, тем самым реализуя в проекте микросервисную архитектуру. Сервисы связаны между собой с помощью docker compose.
 
