@@ -19,11 +19,7 @@ class FormService:
 
     async def find_matching_template(self, form_data: dict[str, str]) -> ResponseForm:
         """Ищет в бд запись у которой поля совпали с полями в присланной форме."""
-        field_queries = []
-        for field, value in form_data.items():
-            field_queries.append({field: value})
-
-        query = {'$or': field_queries}
+        query = {'$or': [{field: value} for field, value in form_data.items()]}
 
         if matched_templates := await self.db.find_all('form_templates', query):
             name = await self.max_match_document(matched_templates, form_data)
