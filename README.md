@@ -121,7 +121,7 @@
    - Документация OpenAPI (документация в формате Swаggеr) проекта доступна по адресу <http://127.0.0.1:8000/api/openapi> с помощью которой есть возможность вручную ввести данные на вход приложению.
    - Данные на вход приложению в формате JSON:
 
-        (или любые другие [поля из тестовых данных](https://github.com/brivazz/leadHit_tz/blob/main/form_api/src/db/mongo/templates_data.py))
+        (или любые другие [поля](https://github.com/brivazz/leadHit_tz/blob/main/form_api/src/db/mongo/templates_data.py))
 
         ```json
           {
