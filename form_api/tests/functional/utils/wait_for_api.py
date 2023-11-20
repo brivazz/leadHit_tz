@@ -14,7 +14,7 @@ from settings import test_settings
 if __name__ == '__main__':
     while True:
         try:
-            response = requests.get(f'{test_settings.service_url}/api/v1/openapi')
+            response = requests.get(f'{test_settings.service_url}/api/openapi')
             if response.status_code == http.HTTPStatus.OK:
                 logger.info('Services is available!!')
                 break
