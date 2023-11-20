@@ -1,4 +1,5 @@
 import asyncio
+import contextlib
 import os
 import sys
 
@@ -6,6 +7,8 @@ import aiohttp
 import pytest
 import pytest_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo import errors
+from pymongo.collection import Collection
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -29,6 +32,21 @@ async def mongo_client():
     client = AsyncIOMotorClient(test_settings.mongo_uri)
     yield client
     await client.close()
+
+
+@pytest.fixture(scope='session', autouse=True)
+async def delete_all_mongo_data(mongo_client: AsyncIOMotorClient):
+    async def delete_data(client):
+        db = client[test_settings.mongo_db]
+
+        for collection_name in COLLECTION_NAMES:
+            with contextlib.suppress(errors.OperationFailure):
+                collection: Collection = db[collection_name]
+                await collection.delete_many({})
+
+    await delete_data(mongo_client)
+    yield
+    await delete_data(mongo_client)
 
 
 @pytest_asyncio.fixture(scope='session')

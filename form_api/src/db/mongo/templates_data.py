@@ -21,7 +21,7 @@ TEMPLATES = [
         'name': 'Order Form',
         'product_name': 'text',
         'quantity': 'text',
-        'date': 'date',
+        'order_date': 'date',
         'phone': 'phone',
     },
     {

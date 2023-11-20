@@ -20,32 +20,33 @@ class FormService:
     async def find_matching_template(self, form_data: dict[str, str]) -> ResponseForm:
         """Ищет в бд запись у которой поля совпали с полями в присланной форме."""
         field_queries = []
-        key_list = []
         for field, value in form_data.items():
             if value:
-                field_queries.append({f'{field}': field})
-                key_list.append(field)
+                field_queries.append({f'{field}': value})
 
         query = {'$or': field_queries}
+        matched_templates = await self.db.find_all('form_templates', query)
+
         if matched_templates := await self.db.find_all('form_templates', query):
-            name = await self.max_match_document(matched_templates, key_list)
+            name = await self.max_match_document(matched_templates, form_data)
             return ResponseForm(name=name)
 
-    async def max_match_document(self, matched_templates: list[dict[Any, Any]], key_list: list[str]) -> str:
+    async def max_match_document(self, matched_templates: list[dict[Any, Any]], form_data: dict[str, str]) -> str:
         """Выбирает имя наиболее подходящего документа."""
         count_dict: DefaultDict[str, int] = defaultdict(int)
 
         for template in matched_templates:
             for key, value in template.items():
-                if key == value and key in key_list:
-                    count_dict[template['name']] += 1
+                for k, v in form_data.items():
+                    if key == k and value == v:
+                        count_dict[template['name']] += 1
 
         return max(count_dict, key=lambda k: count_dict[k])
 
     async def fields_type(self, form_data: dict[str, str]) -> dict[str, str]:
         """Если подходящей формы не нашлось возвращаются поля на основе правил валидации."""
-        len_form_data = len(form_data.keys())
-        return {key: value.value for key, value in list(FormFieldEnum.__members__.items())[:len_form_data]}
+        values = list(FormFieldEnum.__members__.values())
+        return {key: values[i].value for i, key in enumerate(form_data.keys())}
 
 
 @lru_cache
