@@ -21,11 +21,9 @@ class FormService:
         """Ищет в бд запись у которой поля совпали с полями в присланной форме."""
         field_queries = []
         for field, value in form_data.items():
-            if value:
-                field_queries.append({f'{field}': value})
+            field_queries.append({field: value})
 
         query = {'$or': field_queries}
-        matched_templates = await self.db.find_all('form_templates', query)
 
         if matched_templates := await self.db.find_all('form_templates', query):
             name = await self.max_match_document(matched_templates, form_data)
