@@ -38,7 +38,7 @@ async def on_startup(mongo_uri: str) -> None:
 
         if 'form_templates' not in await db.list_collection_names():
             collection: Collection = db['form_templates']
-            collection.create_index([('name', 1)])
+            collection.create_index([('name', 1)], unique=True)
             for template in TEMPLATES:
                 try:
                     validate_values(template)
