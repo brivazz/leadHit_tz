@@ -29,7 +29,7 @@ class DynamicFormData(BaseOrjsonModel):  # type: ignore
             if value not in FormFieldEnum.__members__:
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
-                    detail=f"Invalid: '{value}' for key: '{key}'. Acceptable value: 'date', 'phone', 'email', 'text'.",
+                    detail=f"Invalid value: '{value}' for key: '{key}'. Acceptable: 'date', 'phone', 'email', 'text'.",
                 )
         return values
 

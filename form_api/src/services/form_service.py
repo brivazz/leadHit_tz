@@ -46,7 +46,15 @@ class FormService:
     async def fields_type(self, form_data: dict[str, str]) -> dict[str, str]:
         """Если подходящей формы не нашлось возвращаются поля на основе правил валидации."""
         values = list(FormFieldEnum.__members__.values())
-        return {key: values[i].value for i, key in enumerate(form_data.keys())}
+        form_data_keys = list(form_data.keys())
+        result = {}
+
+        for i, key in enumerate(form_data_keys):
+            value_index = i % len(values)
+            value = values[value_index].value
+            result[key] = value
+
+        return result
 
 
 @lru_cache
