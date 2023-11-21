@@ -22,7 +22,7 @@ TEMPLATES = [
         'product_name': 'text',
         'quantity': 'text',
         'order_date': 'date',
-        'phone': 'phone',
+        'user_phone': 'phone',
     },
     {
         # Шаблон формы "Отзыв"

@@ -21,7 +21,15 @@ class DynamicFormData(BaseOrjsonModel):  # type: ignore
 
     class Config:
         extra = 'allow'
-        json_schema_extra = {'example': {'example_key': 'example_value', 'example_key2': 'example_value2'}}
+        json_schema_extra = {
+            'example': {
+                'quantity': 'text',
+                'order_date': 'date',
+                'rating': 'text',
+                'to_email': 'email',
+                'user_phone': 'phone',
+            },
+        }
 
     @root_validator(skip_on_failure=True)
     def validate_model(cls, values):  # type: ignore
