@@ -35,8 +35,8 @@ TEMPLATES = [
     {
         # Шаблон формы "Email"
         'name': 'Email Form',
-        'to_email': 'text',
-        'subject': 'email',
+        'to_email': 'email',
+        'subject': 'text',
         'body': 'text',
     },
 ]
