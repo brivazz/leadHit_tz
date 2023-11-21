@@ -21,6 +21,8 @@ def init_app() -> fastapi.FastAPI:
     """Инициализирует экземпляр FastAPI."""
     return fastapi.FastAPI(
         title=settings.project_name,
+        description=settings.description,
+        version='1.0.0',
         docs_url='/api/openapi',
         openapi_url='/api/openapi.json',
         default_response_class=fastapi.responses.ORJSONResponse,

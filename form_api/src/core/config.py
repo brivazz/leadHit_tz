@@ -12,6 +12,7 @@ class Settings(BaseSettings):  # type: ignore
     """Настройки приложения."""
 
     project_name: str = Field('form_api')
+    description: str = Field('service')
     debug: str = Field('False')
 
     mongo_uri: str = Field('mongodb://127.0.0.1:27017/')

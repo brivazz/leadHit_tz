@@ -10,8 +10,10 @@ form_router = APIRouter()
 
 @form_router.post(
     '/get_form',
-    summary='Получить форму',
-    description='Запрашивает форму подходящую по переданным полям',
+    summary='Поиск формы',
+    description='Поиск шаблона формы, у которого совпали имя и тип значения с присланной формой',
+    response_description='Имя шаблона формы или список полей с их типами',
+    tags=['Поиск подходящего шаблона формы'],
     status_code=status.HTTP_200_OK,
 )
 async def get_form(
