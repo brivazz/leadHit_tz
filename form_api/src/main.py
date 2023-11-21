@@ -33,4 +33,4 @@ def init_app() -> fastapi.FastAPI:
 
 app = init_app()
 
-app.include_router(form_search.form_router, prefix='/api/v1', tags=['get_form'])
+app.include_router(form_search.form_router, prefix='/api/v1')

@@ -16,7 +16,7 @@ form_router = APIRouter()
     tags=['Поиск подходящего шаблона формы'],
     status_code=status.HTTP_200_OK,
 )
-async def get_form(
+async def search_form(
     form_data: DynamicFormData,
     service: FormService = Depends(get_form_service),
 ) -> ResponseForm | dict[str, str]:
